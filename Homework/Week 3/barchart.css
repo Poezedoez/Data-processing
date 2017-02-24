@@ -1,0 +1,16 @@
+html {
+  text-align: center;
+}
+
+.title {
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+.axis text {
+  font: 15px sans-serif;
+}
+
+.x.axis path {
+  display: none;
+}
