@@ -1,0 +1,23 @@
+/* 
+Ragger Jonkers
+10542604
+*/
+
+html {
+    text-align: center;
+}
+
+p.credentials {
+    text-align: left;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 12px;
+}
+
+/* Left bottom corner of map has space for legend */
+.datamaps-legend {
+    width: 110px;
+    top: 300px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
