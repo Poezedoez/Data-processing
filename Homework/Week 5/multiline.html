@@ -1,0 +1,40 @@
+<!-- 
+Ragger Jonkers
+10542604
+-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+    <head> 
+
+        <title>Temperature charts</title>
+
+        <!-- Link to CSS stylesheet -->
+        <link rel="stylesheet" type="text/css" href="multiline.css">
+
+    </head>
+
+    <body>
+
+        <!-- Drop down menu to select data -->
+        <select id = "opts">
+            <option value="2015">2015</option>
+            <option value="2016">2016</option> 
+        </select>   
+
+        <!-- Load the d3.js library -->    
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+
+        <!-- Legend addition for d3 -->
+        <script src="d3.legend.js"></script>
+
+        <!-- Main js code for creating multiline chart -->
+        <script src="multiline.js"></script>
+
+        <!-- Link to temperature data -->
+        <a href="http://projects.knmi.nl/klimatologie/daggegevens/selectie.cgi">Source: KNMI</a>
+
+    </body>
+
+</html>
