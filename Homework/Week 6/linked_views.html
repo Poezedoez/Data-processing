@@ -1,0 +1,49 @@
+<!-- 
+Ragger Jonkers
+10542604
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>World's welfare</title>
+  <link rel="stylesheet" type="text/css" href="linked_views.css">
+  </head>
+  <body>
+    <div id="map_container" style="height: 500px; width: 900px"></div>
+    <div id="scatter_container" style="height: 500px; width: 900px"></div>
+
+    <!-- Import Datamap dependencies -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="d3-queue.js"></script>
+    <script src="datamaps.all.js"></script>
+
+    <!-- Import local script -->
+    <script src="linked_views.js"></script>
+
+    <!-- Link to map data source -->
+    <a id="gdp_link" href="https://www.cia.gov/library/Publications/the-world-factbook/rankorder/2004rank.html">Source(GDP): CIA</a>
+
+    <!-- Link to growth data source -->
+    <a id="growth_link" href="http://data.worldbank.org/indicator/NY.GDP.PCAP.KD.ZG">Source(growth): Worldbank.org</a>
+
+    <!-- Credentials paragraph -->
+    <p class="credentials">Ragger Jonkers <br/> 10542604 </p>
+  </body>
+</html>
+
+<!-- 
+Design choices:
+
+I have chosen to go with a color scale from light yellow to dark red, 
+because I feel like this scale is most distinguishable from one category to the other
+given the amount of categories there are.
+I've only chosen to highlight the country itself and not the border too for a less cluttery appearance.
+Highlight color type of blue, because it is complementary with orange, the color inbetween light yellow and (dark) red.
+Additionally a tooltip shows the country name and its nominal gdp per capita. I've let out the 'category' dimension in the tooltip,
+because it is deducable from the gdp and the legend.
+Unfortunately the legend itself is really hard to customize, as no real documentation or examples are provided to do so.
+The intuitive color scale makes a visual query in determining which countries in the world are poorer (as seen per inhabitant) 
+in contrast to the rest of the world easy, but it is not possible to see if the cause is because of a large population number, or
+a general low income. That is not part of the data.

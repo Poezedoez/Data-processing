@@ -1,0 +1,69 @@
+/* 
+Ragger Jonkers
+10542604
+*/
+
+html {
+    text-align: center;
+}
+
+body {
+    font: 11px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+/* Grid line through 0 */
+.grid {
+    fill: none;
+    opacity: 0.7;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.dot {
+    stroke: #000;
+}
+
+/* Map tooltip */
+.tooltip {
+    position: absolute;
+    width: 200px;
+    height: 28px;
+    pointer-events: none;
+}
+
+/* Scatter plot tooltip */
+div.tip {   
+    position: absolute; 
+    left: 5px;        
+    text-align: center;                                          
+    padding: 2px;               
+    font: 16px sans-serif;      
+    background: lightsteelblue; 
+    border: 0px;        
+    border-radius: 8px;         
+    pointer-events: none;           
+}
+
+p.credentials {
+    text-align: left;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 12px;
+}
+
+/* Legend should be right to the world map */
+.datamaps-legend {
+    display: inline-block;
+    width: 110px;
+    position: relative;
+    left: 1000px;
+    top:100px;
+    /* positioning the normal way doesn't work, so... margins */
+    margin-left: 950px;
+}
