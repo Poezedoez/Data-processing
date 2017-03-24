@@ -1,0 +1,100 @@
+<!-- 
+Ragger Jonkers
+10542604
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>World's welfare</title>
+    <!-- Import jquery -->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+    <!-- Import bootstrap -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Import local stylesheet -->
+    <link rel="stylesheet" type="text/css" href="linked_views.css">
+  </head>
+
+  <body>
+    <!-- Wrapper used to make content staticly centered on page -->
+    <div id="wrapper">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="linked_views.html">WFare</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="linked_views.html">Home</a></li>
+            <li><a href="story.html">Story</a></li>
+            <li class="active"><a href="#">Design choices</a></li>
+            <li><a href="author.html">Author</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- The grid row with jumbotrons to layout design choices -->
+      <div class="first_row">
+        <div class="col-md-3">
+          <div class="jumbotron">
+            <h2>Update/merge</h2> 
+            <p>
+              I want the visualizations vertically positioned from eachother, because the map needs a lot of width and so does the scatter plot to display all data.
+              I have taken a look at the update and merge method, but the merge function is only available in version 4 of d3 and my whole program is based on a previous version.
+              Besides this, the merge option only seems relevant when you actually 'update' data instead of completely showing different data. Since every scatter is completely different, it doesn't seem like it would be necessary to go out of the way in implementing this (even though the current method is a bit hacker-ish). And since everything needs to be renewed (scales, axes, data points), no extra work is done by redoing it all.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="jumbotron">
+            <h2>Map color</h2> 
+            <p>            
+              I have chosen to go with a color scale from light yellow to dark red, 
+              because I feel like this scale is most distinguishable from one category to the other
+              given the amount of categories there are. </br>
+              I've only chosen to highlight the country itself and not the border too for a less cluttery appearance.
+              Highlight color type of blue, because it is complementary with orange, the color inbetween light yellow and (dark) red.
+              The intuitive color scale makes a visual query in determining which countries in the world are poorer (as seen per inhabitant) 
+              in contrast to the rest of the world easy, but it is not possible to see if the cause is because of a large population number, or
+              a general low income. That is not part of the data. </br>
+              The color scale has pre-defined categories. This is because the legend is automatically created using these categories.
+              Normally I would have used the ordinal color scale that is part of d3.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="jumbotron">
+            <h2>Map tooltip and legend</h2> 
+            <p>
+              Additionally a tooltip shows the country name and its nominal gdp per capita. I've let out the 'category' dimension in the tooltip,
+              because it is deducable from the gdp and the legend. </br>
+              Unfortunately the legend itself is really hard to customize, as no real documentation or examples are provided to do so.
+              I don't see any way (given the examples) to refer to this element. Furthermore it is too complicated to make a similar legend from scratch for now.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="jumbotron">
+            <h2>Scatter plot</h2> 
+            <p>
+              The design of the scatter plot is meant to be minimalistic: high data/ink ratio. No unnecessary colors.
+              A clear interaction when hovering a data point,
+              and a useful tooltip. Buttons on the side can be pressed to go back to the default world scatter plot, show data info, and change 
+              the size of the data points.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

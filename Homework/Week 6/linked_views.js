@@ -1,6 +1,11 @@
 // Ragger Jonkers
 // 10542604
 
+// Global default data for scatter plot (annual growth of world)
+var defaultData;
+
+// Global dot radius attribute
+var dotRadius = 3;
 
 /*
  * Read in data from files using d3-queue.js
@@ -11,12 +16,36 @@ function load(){
   .defer(d3.json, 'gdp.json')
   .defer(d3.csv, 'growth.csv')
   .await(function(error, gdp, growth){
+    defaultData = getGrowthDataForCountry("WLD", growth);
     makeMyMap(error, gdp, growth);
-    // Instantiate default data for scatter plot (gdp of world)
-    var defaultData = getGrowthDataForCountry("WLD", growth);
     makeMyScatter(defaultData);
   });
 }
+
+/* Button click funtion to go back to world view */
+function showWorld(data){
+  makeMyScatter(defaultData);
+}
+
+/* Button click funtion to show data info */
+function showInfo(){
+  alert("Data points with value 0.00% are an indication of missing data for that year");
+}
+
+/* Button click funtion to increase scatter points radius */
+function largeDots(){
+  dotRadius = 8;
+  var dots = d3.selectAll(".dot");
+  dots.attr("r", dotRadius);
+}
+
+/* Button click funtion to decrease scatter points radius */
+function smallDots(){
+  dotRadius = 3;
+  var dots = d3.selectAll(".dot");
+  dots.attr("r", dotRadius);
+}
+
 
 /*
  * Creates a world map visualization using topojson */
@@ -76,17 +105,18 @@ function makeMyMap(error, gdp, growth) {
 
 /* Creates a scatter plot given a json entry of a country */
 function makeMyScatter(data){
-  var scatter_container = document.getElementById('scatter_container');
-  scatter_container.innerHTML = '';
+  var scatterContainer = document.getElementById('scatter_container');
+  scatterContainer.innerHTML = '';
 
   // Define scatterplot margins
   var margin = {top: 30, right: 20, bottom: 60, left: 40},
     width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 450 - margin.top - margin.bottom;
 
   // Add the graph canvas to the container div
   var container = d3.select('#scatter_container');
   var svg = d3.select('#scatter_container').append("svg")
+    .attr("class", "scatterSvg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -149,13 +179,13 @@ function makeMyScatter(data){
     .data(data)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr("r", 3.5)
+      .attr("r", dotRadius)
       .attr("cx", function(d) { return x(d.year); })
       .attr("cy", function(d) { return y(d.growth); })
       .style("fill", "black")
       // Add interaction and tooltip
       .on("mouseover", function(d) { 
-        d3.select(this).attr("r", 6);
+        d3.select(this).attr("r", dotRadius*2);
         d3.select(this).style("fill", "red");  
         tip.transition()    
           .duration(200)    
@@ -166,7 +196,7 @@ function makeMyScatter(data){
       })
       // Undo interaction and hide tooltip          
       .on("mouseout", function(d) { 
-        d3.select(this).attr("r", 3.5);
+        d3.select(this).attr("r", dotRadius);
         d3.select(this).style("fill", "black");    
         tip.transition()    
           .duration(500)    
@@ -200,18 +230,21 @@ function getGrowthDataForCountry(code, data){
   var formattedData = [];
   var entry;
   data.forEach(function(e){
-      if(e["Country Code"] == code){
-          entry = e;
-      };
+    if(e["Country Code"] == code){
+        entry = e;
+    };
   });
   for(var i = 1960; i < 2017; i++){
-      formattedData.push({"name": entry["Country Name"], "year": i, "growth": +entry[i]})
+    formattedData.push({"name": entry["Country Name"], "year": i, "growth": +entry[i]})
   }
   return formattedData;
 }
 
 // Load the initial files and visualizations
-load();
+window.onload = function(e){
+  load();
+}
+
 
 
 
